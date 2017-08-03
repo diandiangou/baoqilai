@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+         PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+     <generatorConfiguration>
+       <!-- 数据库驱动   modelType=flat 一张表 单个类-->
+       <!-- <classPathEntry location="D:\apache-tomcat-8.0.30\webapps\fobe\WEB-INF\lib\mysql-connector-java-5.1.21.jar"/> -->
+       <classPathEntry location="E:\repository\mysql\mysql-connector-java\5.1.6\mysql-connector-java-5.1.6.jar"/>
+       <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+          <property name="beginningDelimiter" value="`"/>
+          <property name="endingDelimiter" value="`"/>  
+       
+       <!--   注释 -->
+       <commentGenerator>
+          <property name="suppressDate" value="false"/>
+          <property name="suppressAllComments" value="true"/>
+       </commentGenerator>
+         
+       <!-- 数据库配置 -->
+       <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                connectionURL="jdbc:mysql://192.168.8.103/erp?characterEncoding=utf-8"
+                userId="root"
+                password="root">
+       </jdbcConnection>
+       
+       <!-- 类型转换 -->  
+        <javaTypeResolver>  
+            <!-- 是否使用bigDecimal， false可自动转化以下类型（Long, Integer, Short, etc.） -->  
+            <property name="forceBigDecimals" value="false"/>  
+        </javaTypeResolver> 
+        
+       <!-- model配置  -->
+       <javaModelGenerator targetPackage="com.erp.admin.pojo.sys" targetProject="E:\my-work\zhou_parent\zhou_erp\src\main\java">
+           <property name="enableSubPackages" value="true" />
+       </javaModelGenerator>
+         <!--   <property name="trimStrings" value="true" /> -->
+
+       <!--  基于xml文件mapper    -->
+   <!--     <sqlMapGenerator targetPackage="cn.fobe.user.media.service.impl"  targetProject="E:\git\Cents\src\main\resource">
+           <property name="enableSubPackages" value="true" />
+       </sqlMapGenerator>  -->
+
+           <!-- 客户端代码，生成易于使用的针对Model对象和XML配置文件 的代码
+        type="ANNOTATEDMAPPER",生成Java Model 和基于注解的Mapper对象
+        type="MIXEDMAPPER",生成基于注解的Java Model 和相应的Mapper对象
+        type="XMLMAPPER",生成SQLMap XML文件和独立的Mapper接口
+-->
+       
+       <!-- ANNOTATEDMAPPER 基于注解  mapper接口    -->
+           <javaClientGenerator type="ANNOTATEDMAPPER" targetPackage="com.erp.admin.mapper.sys"
+              targetProject="E:\my-work\zhou_parent\zhou_erp\src\main\java">
+              <property name="enableSubPackages" value="false" />  
+        </javaClientGenerator>
+       
+       <!--  数据库表  
+       命令执行           mybatis-generator:generate -e
+       -->
+       <table tableName="sys_user"
+           domainObjectName="SysUser" enableCountByExample="false"
+           enableDeleteByExample="false" enableSelectByExample="false"  
+           enableUpdateByExample="false">
+
+           <!--  指定列的java数据类型   -->
+          <!--  <columnOverride column="CREATE_DATE" jdbcType="TIMESTAMP" />
+           <columnOverride column="NAME" jdbcType="VARCHAR" />  -->
+       </table>
+     </context>
+    </generatorConfiguration>
